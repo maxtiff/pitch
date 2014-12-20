@@ -9,26 +9,26 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css"
     media="only screen and (max-device-width: 480px)" >
   <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
   <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
 
-  
+
   <!-- Grab CDN jQuery, fall back to local if offline -->
   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
-  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
-  <script data-main="libraries/frameworks/io2012/js/slides" 
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script>
+  <script data-main="libraries/frameworks/io2012/js/slides"
     src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
   </script>
-  
-  
+
+
 
 </head>
 <body style="opacity: 0">
   <slides class="layout-widescreen">
-    
+
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
@@ -36,20 +36,31 @@
     <h2>Random Data Distributions</h2>
     <p>Travis May<br/></p>
   </hgroup>
-  <article></article>  
+  <article></article>
 </slide>
-    
+
 
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>What does it do?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This simple application generates a random sample of numbers, the quantity and distribution of which as determined by the user, and then the application detects any outliers that are present. Finally, the results, with the outliers highlighted, are presented in a simple graphical plot.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>How does it work?</h2>
   </hgroup>
   <article data-timings="">
     <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
+<li>User chooses the type of distribution</li>
+<li>User inputs the number of observations</li>
+<li>Press the submit button!</li>
 </ol>
 
   </article>
@@ -58,10 +69,53 @@
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Slide 2</h2>
+    <h2>On the backend: <small>server.ui</small> </h2>
   </hgroup>
   <article data-timings="">
-    
+    <p><code></p>
+
+<pre><code>dist &lt;- input$dist
+n &lt;- input$n
+
+outlierScores &lt;- lofactor(data(), k = n/10)
+outliers &lt;- order(outlierScores, decreasing=T)[1:5]
+
+col &lt;- rep(&quot;black&quot;, n)
+col[outliers] &lt;- &quot;red&quot;
+plot(data(),
+      main=paste(&#39;r&#39;, dist, &#39;(&#39;, n, &#39;)&#39;, sep=&#39;&#39;), pch = 19, col = col)
+</code></pre>
+
+<p></code></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Why?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This proves that an application can simply detect and highlight outliers, perhaps in order for the user to remove them later.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:url('assets/img/screen.png');">
+  <article data-timings="">
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Thank you</h2>
+  </hgroup>
+  <article data-timings="">
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -71,30 +125,54 @@
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
     <ul>
       <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+      <a href="#" target="_self" rel='tooltip'
+        data-slide=1 title='What does it do?'>
          1
       </a>
     </li>
     <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Slide 2'>
+      <a href="#" target="_self" rel='tooltip'
+        data-slide=2 title='How does it work?'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip'
+        data-slide=3 title='On the backend:<small>server.ui</small>'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip'
+        data-slide=4 title='Why?'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip'
+        data-slide=5 title=''>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip'
+        data-slide=6 title='Thank you'>
+         6
       </a>
     </li>
   </ul>
   </div>  <!--[if IE]>
-    <script 
-      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
     </script>
     <script>CFInstall.check({mode: 'overlay'});</script>
   <![endif]-->
 </body>
   <!-- Load Javascripts for Widgets -->
-  
+
   <!-- LOAD HIGHLIGHTER JS FILES -->
   <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <!-- DONE LOADING HIGHLIGHTER JS FILES -->
-   
+
   </html>
